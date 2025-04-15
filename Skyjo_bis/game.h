@@ -3,6 +3,8 @@
 #include <map>
 #include <vector>
 #include "card.h"
+#include "draw_pile.h"
+#include "discard_pile.h"
 #include "constants.h"
 #define GAME_DEBUG true
 
@@ -14,9 +16,20 @@ public:
 	Game(Application& application, unsigned int player_amount) : m_application(application), m_player_amount(player_amount)
 	{
 		#ifdef GAME_DEBUG
-					std::cout << "Game created at address: " << this << std::endl;
+			std::cout << "Game created at address: " << this << std::endl;
 		#endif // GAME_DEBUG
-		initialize_cards_vector();
+
+		m_cards = build_cards_vector();
+		
+		std::vector<Card*> cards_ptrs;
+		cards_ptrs.reserve(Constants::Card::CARD_NUMBER);
+		for (auto& card : m_cards)
+		{
+			cards_ptrs.push_back(&card);
+		}
+		m_draw_pile = DrawPile(this, cards_ptrs);
+		m_discard_pile = DiscardPile(this, {});
+
 	};
 	~Game()
 	{
@@ -30,11 +43,18 @@ public:
 		std::cout << "Game with " << m_player_amount << " players." << std::endl;
 	}
 
+	void shuffle_cards();
+
 private:
 	Application& m_application;
 	unsigned int m_player_amount;
 
 	std::vector<Card> m_cards;
-	void initialize_cards_vector();
+	std::vector<Card> build_cards_vector();
+
+	DrawPile m_draw_pile;
+	DiscardPile m_discard_pile;
+
+
 };
 
