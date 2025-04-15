@@ -24,6 +24,11 @@ namespace Constants {
        };  
 
        // Define CARD_NUMBER as a constexpr since it can be evaluated at compile time.  
-       constexpr unsigned int CARD_NUMBER = 144;  
-   }  
+       constexpr unsigned int CARD_NUMBER = 144;
+   }
+
+   namespace Deck {
+	   constexpr unsigned int N_ROW = 3;
+	   constexpr unsigned int N_COL = 4;
+   }
 }
