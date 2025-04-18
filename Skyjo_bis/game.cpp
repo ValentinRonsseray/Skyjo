@@ -37,15 +37,9 @@ void Game::distribute_cards()
 	m_draw_pile.distribute_cards(m_players);
 }
 
-void Game::pick_card_from_draw_pile(Player& player) const
+void Game::pick_card_from_draw_pile(Player& player)
 {
-	if (m_draw_pile.is_empty())
-	{
-		throw std::runtime_error("Draw pile is empty.");
-	}
-
-	Card* card = m_draw_pile.get_cards().back();
-	m_draw_pile.get_cards().pop_back();
+	Card* card = m_draw_pile.pick_top_card();
 	player.set_extra_card(card);
 }
 
@@ -59,6 +53,20 @@ void Game::pick_card_from_discard_pile(Player& player)
 	Card* card = m_discard_pile.get_cards().back();
 	m_discard_pile.get_cards().pop_back();
 	player.set_extra_card(card);
+}
+
+int Game::check_for_removable_column(Player& player)
+{
+	return player.check_for_removable_column();
+}
+
+void Game::remove_column(Player& player, int column_index)
+{
+	if (column_index < 0 || column_index >= Constants::Deck::N_COL)
+	{
+		throw std::out_of_range("Column index out of range.");
+	}
+	player.remove_column(column_index);
 }
 
 void Game::discard_card(Player& player, DiscardPile& discard_pile)

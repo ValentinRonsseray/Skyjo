@@ -25,3 +25,17 @@ void Deck::discard_card(DiscardPile& discard_pile)
 		throw std::runtime_error("No extra card to discard.");
 	}
 }
+
+void Deck::replace_card(DiscardPile& discard_pile, size_t card_index)
+{
+	if (card_index < get_size())
+	{
+		discard_pile.add_card(m_deck_cards[card_index].card);
+		m_deck_cards[card_index].card = m_extra_card;
+		m_extra_card = nullptr;
+	}
+	else
+	{
+		throw std::out_of_range("Card index out of range");
+	}
+}

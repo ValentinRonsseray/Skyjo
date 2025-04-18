@@ -45,14 +45,16 @@ public:
 	void print_state() const;
 
 	inline std::vector<Player>& get_players() { return m_players; }
+	inline int get_score(Player& player) const { return player.get_score(); }
 
 	void shuffle_cards();
 	void distribute_cards();
-	void pick_card_from_draw_pile(Player& player) const;
+	void pick_card_from_draw_pile(Player& player);
 	void pick_card_from_discard_pile(Player& player);
+	int check_for_removable_column(Player& player);
+	void remove_column(Player& player, int column_index);
 	void discard_card(Player& player, DiscardPile& discard_pile);
 
-	inline int get_score(Player& player) const { return player.get_score(); }
 
 private:
 	Application& m_application;
