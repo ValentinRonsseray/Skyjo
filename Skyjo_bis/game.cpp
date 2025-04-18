@@ -50,7 +50,7 @@ void Game::pick_card_from_discard_pile(Player& player)
 		throw std::runtime_error("Discard pile is empty.");
 	}
 
-	Card* card = m_discard_pile.get_cards().back();
+	Card* card = m_discard_pile.pick_top_card();
 	m_discard_pile.get_cards().pop_back();
 	player.set_extra_card(card);
 }
