@@ -20,5 +20,11 @@ public:
 		m_deck.set_extra_card(card);
 	}
 
+	/**
+	/**
+	 * @brief Discards the extra card.
+	 * @param discard_pile The discard pile to which the card will be discarded.
+	 */
+	void discard_card(DiscardPile& discard_pile);
 	void print_state() const;
 };

@@ -33,6 +33,7 @@ public:
 		m_extra_card = card;
 	}
 
+	void discard_card(DiscardPile& discard_pile);
 	class Iterator
 	{
 	private:

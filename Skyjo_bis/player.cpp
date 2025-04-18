@@ -7,6 +7,10 @@ int Player::get_score() const
 	return m_deck.get_score();
 }
 
+void Player::discard_card(DiscardPile& discard_pile)
+{
+	m_deck.discard_card(discard_pile);
+}
 
 void Player::print_state() const
 {

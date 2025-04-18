@@ -50,6 +50,7 @@ public:
 	void distribute_cards();
 	void pick_card_from_draw_pile(Player& player) const;
 	void pick_card_from_discard_pile(Player& player);
+	void discard_card(Player& player, DiscardPile& discard_pile);
 
 	inline int get_score(Player& player) const { return player.get_score(); }
 
