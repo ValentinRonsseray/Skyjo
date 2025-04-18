@@ -7,9 +7,26 @@
 
 int main()
 {
-	// Create app with make shared
-	Application app;
-	app.start_game(2);
+	try
+	{
+		Application app;
+		app.start_game(2);
+		Game& game = app.get_game();
+		game.print_state();
+		game.shuffle_cards();
+		game.distribute_cards();
+		game.print_state();
+	}
+	catch (const std::exception& e)
+	{
+		std::cerr << "Exception: " << e.what() << std::endl;
+		return 1;
+	}
+	catch (...)
+	{
+		std::cerr << "Unknown exception occurred." << std::endl;
+		return 1;
+	}
 
 	return 0;
 }

@@ -42,8 +42,16 @@ public:
 	{
 		std::cout << "Game with " << m_player_amount << " players." << std::endl;
 	}
+	void print_state() const;
+
+	inline std::vector<Player>& get_players() { return m_players; }
 
 	void shuffle_cards();
+	void distribute_cards();
+	void pick_card_from_draw_pile(Player& player) const;
+	void pick_card_from_discard_pile(Player& player);
+
+	inline int get_score(Player& player) const { return player.get_score(); }
 
 private:
 	Application& m_application;
@@ -56,7 +64,5 @@ private:
 
 	DrawPile m_draw_pile;
 	DiscardPile m_discard_pile;
-
-
 };
 

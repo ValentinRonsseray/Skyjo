@@ -16,10 +16,47 @@ std::vector<Card> Game::build_cards_vector()
 	return cards;
 }
 
+void Game::print_state() const
+{
+	std::cout << "Game " << this << " :\n";
+	for (const auto& player : m_players)
+	{
+		player.print_state();
+		std::cout << "\n";
+	}
+	std::cout << "Draw pile size: " << m_draw_pile.get_cards().size() << "\n";
+}
+
 void Game::shuffle_cards()
 {
-	std::vector<Card*> draw_pile_cards = m_draw_pile.get_cards();
-	std::random_device rd;  // Obtain a random number from hardware
-	std::mt19937 eng(rd()); // Seed the generator
-	std::shuffle(draw_pile_cards.begin(), draw_pile_cards.end(), eng);
+	m_draw_pile.shuffle_cards();
+}
+
+void Game::distribute_cards()
+{
+	m_draw_pile.distribute_cards(m_players);
+}
+
+void Game::pick_card_from_draw_pile(Player& player) const
+{
+	if (m_draw_pile.is_empty())
+	{
+		throw std::runtime_error("Draw pile is empty.");
+	}
+
+	Card* card = m_draw_pile.get_cards().back();
+	m_draw_pile.get_cards().pop_back();
+	player.set_extra_card(card);
+}
+
+void Game::pick_card_from_discard_pile(Player& player)
+{
+	if (m_discard_pile.is_empty())
+	{
+		throw std::runtime_error("Discard pile is empty.");
+	}
+
+	Card* card = m_discard_pile.get_cards().back();
+	m_discard_pile.get_cards().pop_back();
+	player.set_extra_card(card);
 }

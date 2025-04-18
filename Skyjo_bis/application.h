@@ -22,6 +22,8 @@ public:
         #endif // APPLICATION_DEBUG
 	}
 
+    Game& get_game() { return *m_game; }
+
     void start_game(unsigned int player_amount);
     void print_application();
 };
