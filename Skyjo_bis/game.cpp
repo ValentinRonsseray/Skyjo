@@ -51,7 +51,6 @@ void Game::pick_card_from_discard_pile(Player& player)
 	}
 
 	Card* card = m_discard_pile.pick_top_card();
-	m_discard_pile.get_cards().pop_back();
 	player.set_extra_card(card);
 }
 
@@ -72,4 +71,17 @@ void Game::remove_column(Player& player, int column_index)
 void Game::discard_card(Player& player, DiscardPile& discard_pile)
 {
 	player.discard_card(discard_pile);
+}
+
+void Game::discard_draw_pile_top_card()
+{
+	if (!m_draw_pile.is_empty())
+	{
+		Card* top_card = m_draw_pile.pick_top_card();
+		m_discard_pile.add_card(top_card);
+	}
+	else
+	{
+		throw std::runtime_error("Draw pile is empty.");
+	}
 }

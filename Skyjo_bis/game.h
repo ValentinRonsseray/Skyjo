@@ -54,6 +54,10 @@ public:
 	int check_for_removable_column(Player& player);
 	void remove_column(Player& player, int column_index);
 	void discard_card(Player& player, DiscardPile& discard_pile);
+	/**
+	 * @brief Discards the top card of the draw pile.
+	 */
+	void discard_draw_pile_top_card();
 
 
 private:
