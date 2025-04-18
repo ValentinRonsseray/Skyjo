@@ -10,5 +10,7 @@ public:
 	std::vector<Card*> get_cards() const { return m_cards; }
 
     inline bool is_empty() const { return m_cards.empty(); }
+
+	void add_card(Card* card);
 };
 
