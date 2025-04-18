@@ -12,5 +12,7 @@ protected:
 public:
 	Pile() : m_game(nullptr), m_cards({}) {}
 	Pile(Game* game, std::vector<Card*> cards) : m_game(game), m_cards(cards) {}
+
+	Card* pick_top_card();
 };
 
