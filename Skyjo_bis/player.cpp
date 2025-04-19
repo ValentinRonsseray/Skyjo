@@ -105,7 +105,7 @@ void Player::print_state() const
 	std::cout << "Score: " << get_score() << "\n";
 
 	// Display extra card
-	Card* extra_card = m_deck.get_extra_card();
+	/*Card* extra_card = m_deck.get_extra_card();
 	if (extra_card != nullptr)
 	{
 		std::cout << "Extra card: " << extra_card->get_points() << "\n";
@@ -113,6 +113,6 @@ void Player::print_state() const
 	else
 	{
 		std::cout << "No extra card.\n";
-	}
+	}*/
 
 }
