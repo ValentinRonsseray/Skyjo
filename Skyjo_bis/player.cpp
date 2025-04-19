@@ -22,6 +22,7 @@ int Player::check_for_removable_column() const
 		{
 			if (get_card_in_deck(j + i * Constants::Deck::N_ROW) == nullptr || !get_card_visibility(j))
 			{
+				column_removable = false;
 				break;
 			}
 
