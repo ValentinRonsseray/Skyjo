@@ -37,6 +37,18 @@ void Game::distribute_cards()
 	m_draw_pile.distribute_cards(m_players);
 }
 
+void Game::reveal_card(Player& player, size_t deck_index)
+{
+	const size_t max_index = static_cast<size_t>(Constants::Deck::N_ROW * Constants::Deck::N_COL) - 1;
+	if (deck_index <= max_index)
+	{
+		player.set_card_and_visibility_in_deck(deck_index, player.get_card_in_deck(deck_index), true);
+	}
+	else
+	{
+		throw std::out_of_range("Deck index out of range.");
+	}
+}
 void Game::pick_card_from_draw_pile(Player& player)
 {
 	Card* card = m_draw_pile.pick_top_card();

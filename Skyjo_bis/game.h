@@ -50,6 +50,7 @@ public:
 
 	void shuffle_cards();
 	void distribute_cards();
+	void reveal_card(Player& player, size_t deck_index);
 	void pick_card_from_draw_pile(Player& player);
 	void pick_card_from_discard_pile(Player& player);
 	int check_for_removable_column(Player& player);
