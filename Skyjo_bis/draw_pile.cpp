@@ -23,7 +23,7 @@ void DrawPile::distribute_cards(std::vector<Player>& players)
 	{
 		for (size_t k = 0; k < PLAYER_COUNT; ++k)
 		{
-			players[k].get_deck().set_card_in_deck(j, m_cards.back(), false);
+			players[k].get_deck().set_card_and_visibility_in_deck(j, m_cards.back(), false);
 			m_cards.pop_back();
 		}
 	}
