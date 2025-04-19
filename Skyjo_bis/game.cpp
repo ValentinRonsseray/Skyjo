@@ -18,7 +18,6 @@ std::vector<Card> Game::build_cards_vector()
 
 void Game::print_state() const
 {
-	std::cout << "Game " << this << " :\n";
 	for (const auto& player : m_players)
 	{
 		player.print_state();
@@ -94,9 +93,9 @@ void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 					reveal_card(player, deck_index);
 					chosen_card_already_releaved = false;
 				}
-}
-}
-}
+			}
+		}
+	}
 	else // source == UserInputHandler::DrawCardSourceEnum::DISCARD_PILE
 	{
 		pick_card_from_discard_pile(player);
@@ -111,13 +110,13 @@ void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 		{
 			remove_column(player, removable_column);
 			std::cout << "Column " << removable_column << " removed.\n";
-}
-}
+		}
+	}
 
 	if (a_player_has_revealed_all_cards)
 	{
 		player.reveal_all_cards();
-}
+	}
 }
 
 void Game::pick_card_from_draw_pile(Player& player)
@@ -224,4 +223,33 @@ Player* Game::next_player(Player& player)
     {
         throw std::runtime_error("Player not found in the game.");
     }
+}
+
+void Game::game_loop()
+{
+
+	shuffle_cards();
+	distribute_cards();
+	Player* player = designate_first_player();
+	std::cout << "\n" << "First player: " << player << "\n" << "\n";
+
+	bool a_player_has_revealed_all_cards = false;
+	while (!check_game_over())
+	{
+		print_state();
+		std::cout << "\n" << "Current player: " << player << "\n";
+		play_turn(*player, a_player_has_revealed_all_cards);
+		if (player->has_every_cards_visible())
+		{
+			a_player_has_revealed_all_cards = true;
+			std::cout << "Player " << player << " has revealed all cards.\n";
+		}
+		player = next_player(*player);
+	}
+
+	std::cout << "Game over! Final scores:\n";
+	for (const auto& player : m_players)
+	{
+		std::cout << "Player " << &player << ": " << player.get_score() << "\n";
+	}
 }

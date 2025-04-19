@@ -76,6 +76,10 @@ public:
 	 */
 	Player* next_player(Player& player);
 	void play_turn(Player& player, bool a_player_has_revealed_all_cards);
+	/**
+	 * @brief Starts the game loop.
+	 */
+	void game_loop();
 
 private:
 	Application& m_application;
