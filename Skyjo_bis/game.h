@@ -7,6 +7,7 @@
 #include "draw_pile.h"
 #include "discard_pile.h"
 #include "constants.h"
+#include "user_input_handler.h"
 #define GAME_DEBUG true
 
 class Application;
@@ -71,5 +72,7 @@ private:
 
 	DrawPile m_draw_pile;
 	DiscardPile m_discard_pile;
+
+	UserInputHandler m_user_input_handler;
 };
 
