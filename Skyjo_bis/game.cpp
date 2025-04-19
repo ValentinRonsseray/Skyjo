@@ -24,7 +24,8 @@ void Game::print_state() const
 		player.print_state();
 		std::cout << "\n";
 	}
-	std::cout << "Draw pile size: " << m_draw_pile.get_cards().size() << "\n";
+	m_discard_pile.print_state();
+	m_draw_pile.print_state();
 }
 
 void Game::shuffle_cards()
