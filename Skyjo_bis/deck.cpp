@@ -13,6 +13,16 @@ int Deck::get_score() const
 	return score;
 }
 
+bool Deck::has_every_cards_visible() const
+{
+	for (const auto& card : m_deck_cards) {
+		if (!card.is_visible) {
+			return false;
+		}
+	}
+	return true;
+}
+
 void Deck::discard_card(DiscardPile& discard_pile)
 {
 	if (m_extra_card != nullptr)
@@ -32,6 +42,7 @@ void Deck::replace_card(DiscardPile& discard_pile, size_t card_index)
 	{
 		discard_pile.add_card(m_deck_cards[card_index].card);
 		m_deck_cards[card_index].card = m_extra_card;
+		m_deck_cards[card_index].is_visible = true;
 		m_extra_card = nullptr;
 	}
 	else

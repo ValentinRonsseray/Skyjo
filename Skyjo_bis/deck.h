@@ -37,6 +37,8 @@ public:
 		m_extra_card = card;
 	}
 
+	bool has_every_cards_visible() const;
+
 	void discard_card(DiscardPile& discard_pile);
 	void replace_card(DiscardPile& discard_pile, size_t card_index);
 
