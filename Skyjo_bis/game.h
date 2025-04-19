@@ -75,6 +75,7 @@ public:
 	 * @param player 
 	 */
 	Player* next_player(Player& player);
+	void play_turn(Player& player, bool a_player_has_revealed_all_cards);
 
 private:
 	Application& m_application;

@@ -50,13 +50,76 @@ void Game::reveal_card(Player& player, size_t deck_index)
 		throw std::out_of_range("Deck index out of range.");
 	}
 }
+
+void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
+{
+	// Draw card from the draw pile or discard pile
+	UserInputHandler::DrawCardSourceEnum source = m_user_input_handler.choose_where_to_draw();
+	if (source == UserInputHandler::DrawCardSourceEnum::DRAW_PILE)
+	{
+		pick_card_from_draw_pile(player);
+		player.get_extra_card()->get_points();
+		std::cout << "You picked the card: " << player.get_extra_card()->get_points() << "\n";
+
+		// Choose to discard or replace
+		UserInputHandler::CardDecisionEnum decision = m_user_input_handler.choose_discard_or_replace();
+		if (decision == UserInputHandler::CardDecisionEnum::REPLACE)
+		{
+			size_t card_index = m_user_input_handler.choose_card_to_replace();
+			player.replace_card(m_discard_pile, card_index);
+			int removable_column = check_for_removable_column(player);
+			if (removable_column != -1)
+			{
+				remove_column(player, removable_column);
+				std::cout << "Column " << removable_column << " removed.\n";
+			}
+			
+		}
+		else if (decision == UserInputHandler::CardDecisionEnum::DISCARD)
+		{
+			discard_card(player, m_discard_pile);
+
+			// Choose a card to reveal
+			size_t deck_index = 0;
+			bool chosen_card_already_releaved = true;
+			while (chosen_card_already_releaved)
+			{
+				size_t deck_index = m_user_input_handler.choose_card_to_reveal();
+				if (player.get_card_visibility(deck_index))
+				{
+					std::cout << "This card is already revealed. Please choose another one.\n";
+				}
+				else
+				{
+					reveal_card(player, deck_index);
+					chosen_card_already_releaved = false;
+				}
 }
 }
 }
+	else // source == UserInputHandler::DrawCardSourceEnum::DISCARD_PILE
+	{
+		pick_card_from_discard_pile(player);
+		player.get_extra_card()->get_points();
+		std::cout << "You picked the card: " << player.get_extra_card()->get_points() << "\n";
+
+		// Replace one of the cards in the deck
+		size_t card_index = m_user_input_handler.choose_card_to_replace();
+		player.replace_card(m_discard_pile, card_index);
+		int removable_column = check_for_removable_column(player);
+		if (removable_column != -1)
+		{
+			remove_column(player, removable_column);
+			std::cout << "Column " << removable_column << " removed.\n";
 }
 }
+
+	if (a_player_has_revealed_all_cards)
+	{
+		player.reveal_all_cards();
 }
 }
+
 void Game::pick_card_from_draw_pile(Player& player)
 {
 	Card* card = m_draw_pile.pick_top_card();
