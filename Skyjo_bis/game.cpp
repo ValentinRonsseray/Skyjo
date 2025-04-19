@@ -98,6 +98,28 @@ void Game::discard_draw_pile_top_card()
 	}
 }
 
+Player* Game::designate_first_player()  
+{  
+	// For now, simply pick a random player from the list of players
+	// The accurate way to pick the first player is to be implemented in the future
+
+	// But before we need to reveal two cards for each player
+	for (auto& player : m_players)
+	{
+		reveal_card(player, 9);
+		reveal_card(player, 10);
+	}
+
+	// And the discard pile must have one card
+	discard_draw_pile_top_card();
+
+	std::random_device rd;
+	std::mt19937 gen(rd());
+	std::uniform_int_distribution<> dis(0, m_player_amount - 1);
+	size_t random_index = static_cast<size_t>(dis(gen));
+	return &m_players[random_index];
+}
+
 bool Game::check_game_over() const
 {
 	bool game_over = true;

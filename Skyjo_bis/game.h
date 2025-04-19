@@ -60,7 +60,10 @@ public:
 	 * @brief Discards the top card of the draw pile.
 	 */
 	void discard_draw_pile_top_card();
-
+	/**
+	 * @brief Designates the first player to play.
+	 */
+	Player* designate_first_player();
 	/**
 	 * @brief Checks if the game is over. A game is over if every cards are visible in every decks.
 	 * @return true if the game is over, false otherwise.
