@@ -50,6 +50,13 @@ void Game::reveal_card(Player& player, size_t deck_index)
 		throw std::out_of_range("Deck index out of range.");
 	}
 }
+}
+}
+}
+}
+}
+}
+}
 void Game::pick_card_from_draw_pile(Player& player)
 {
 	Card* card = m_draw_pile.pick_top_card();
