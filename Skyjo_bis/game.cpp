@@ -98,6 +98,21 @@ void Game::discard_draw_pile_top_card()
 	}
 }
 
+bool Game::check_game_over() const
+{
+	bool game_over = true;
+	for (const auto& player : m_players)
+	{
+		game_over = player.has_every_cards_visible();
+		if (!game_over)
+		{
+			break;
+		}
+	}
+
+	return game_over;
+}
+
 Player* Game::next_player(Player& player)
 {
     auto it = std::find_if(m_players.begin(), m_players.end(), [&](const Player& p) {

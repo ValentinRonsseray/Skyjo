@@ -62,6 +62,11 @@ public:
 	void discard_draw_pile_top_card();
 
 	/**
+	 * @brief Checks if the game is over. A game is over if every cards are visible in every decks.
+	 * @return true if the game is over, false otherwise.
+	 */
+	bool check_game_over() const;
+	/**
 	 * @brief Returns the next player in the game.
 	 * @param player 
 	 */
