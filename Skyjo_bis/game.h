@@ -46,6 +46,7 @@ public:
 	void print_state() const;
 
 	inline std::vector<Player>& get_players() { return m_players; }
+	inline UserInputHandler& get_user_input_handler() { return m_user_input_handler; }
 	inline int get_score(Player& player) const { return player.get_score(); }
 
 	void shuffle_cards();
