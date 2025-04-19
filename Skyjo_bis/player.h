@@ -33,6 +33,8 @@ public:
 		m_deck.set_extra_card(card);
 	}
 
+	bool has_every_cards_visible() const;
+
 	/**
 	 * @brief Returns the index of the column if all its cards are visible and have the same points. Otherwise returns -1.
 	 */

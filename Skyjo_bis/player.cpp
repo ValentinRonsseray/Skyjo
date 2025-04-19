@@ -7,6 +7,11 @@ int Player::get_score() const
 	return m_deck.get_score();
 }
 
+bool Player::has_every_cards_visible() const
+{
+	return m_deck.has_every_cards_visible();
+}
+
 int Player::check_for_removable_column() const
 {
 	for (size_t j = 0; j < Constants::Deck::N_COL; j++)
