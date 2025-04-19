@@ -69,6 +69,14 @@ void Player::replace_card(DiscardPile& discard_pile, size_t card_index)
 	m_deck.replace_card(discard_pile, card_index);
 }
 
+void Player::reveal_all_cards()
+{
+	for (auto& card_in_deck : m_deck)
+	{
+		card_in_deck.is_visible = true;
+	}
+}
+
 void Player::print_state() const
 {
 	std::cout << "Player " << this << " :\n";

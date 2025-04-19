@@ -55,6 +55,9 @@ public:
 	 * @param card_index The index of the card to be replaced. (0 <= card_index <= 11)
 	 */
 	void replace_card(DiscardPile& discard_pile, size_t card_index);
-
+	/**
+	 * @brief Reveals all cards in the deck.
+	 */
+	void reveal_all_cards();
 	void print_state() const;
 };
