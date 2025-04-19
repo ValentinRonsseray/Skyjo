@@ -139,6 +139,7 @@
     <ClCompile Include="pile.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="user_input_handler.cpp" />
+    <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="application.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="pile.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="user_input_handler.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
