@@ -61,6 +61,11 @@ public:
 	 */
 	void discard_draw_pile_top_card();
 
+	/**
+	 * @brief Returns the next player in the game.
+	 * @param player 
+	 */
+	Player* next_player(Player& player);
 
 private:
 	Application& m_application;

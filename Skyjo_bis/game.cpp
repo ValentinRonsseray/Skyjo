@@ -97,3 +97,23 @@ void Game::discard_draw_pile_top_card()
 		throw std::runtime_error("Draw pile is empty.");
 	}
 }
+
+Player* Game::next_player(Player& player)
+{
+    auto it = std::find_if(m_players.begin(), m_players.end(), [&](const Player& p) {
+        return &p == &player;
+    });
+    if (it != m_players.end())
+    {
+        ++it;
+        if (it == m_players.end())
+        {
+            it = m_players.begin();
+        }
+        return &(*it);
+    }
+    else
+    {
+        throw std::runtime_error("Player not found in the game.");
+    }
+}
