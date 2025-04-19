@@ -4,6 +4,7 @@
 #include <iostream>
 #include "application.h"
 #include "constants.h"
+#include "user_input_handler.h"
 
 int main()
 {
@@ -12,10 +13,7 @@ int main()
 		Application app;
 		app.start_game(2);
 		Game& game = app.get_game();
-		game.print_state();
-		game.shuffle_cards();
-		game.distribute_cards();
-		game.print_state();
+		game.game_loop();
 	}
 	catch (const std::exception& e)
 	{
