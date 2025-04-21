@@ -170,19 +170,45 @@ void Game::discard_draw_pile_top_card()
 
 Player* Game::designate_first_player()  
 {  
-	// For now, simply pick a random player from the list of players
-	// The accurate way to pick the first player is to be implemented in the future
-
-	// But before we need to reveal two cards for each player
+	// Each player must reveal 2 cards
 	for (auto& player : m_players)
 	{
-		reveal_card(player, 9);
-		reveal_card(player, 10);
+		std::cout << "Player " << &player << ", choose 2 cards to reveal:\n";
+		size_t first_choice_index = m_user_input_handler.choose_card_to_reveal();
+		size_t second_choice_index = first_choice_index;
+		while (second_choice_index == first_choice_index)
+		{
+			second_choice_index = m_user_input_handler.choose_card_to_reveal();
+			if (second_choice_index == first_choice_index)
+			{
+				std::cout << "You have already revealed this card. Please choose another one.\n";
+			}
+		}
+		player.reveal_card(first_choice_index);
+		player.reveal_card(second_choice_index);
 	}
 
-	// And the discard pile must have one card
-	discard_draw_pile_top_card();
+	// Get the players with the highest score
+	int max_score = -4; // Minimum score possible is -4 = -2 + -2
+	std::vector<Player*> players_with_max_score;
+	for (auto& player : m_players)
+	{
+		int score = player.get_score();
+		if (score > max_score)
+		{
+			max_score = score;
+			players_with_max_score.clear();
+			players_with_max_score.push_back(&player);
+		}
+		else if (score == max_score)
+		{
+			players_with_max_score.push_back(&player);
+		}
+	}
 
+	// Randomly select one of the players with the highest score
+	Player* selected_player = Utils::pick_random_element_in_vector(players_with_max_score);
+	return selected_player;
 	std::random_device rd;
 	std::mt19937 gen(rd());
 	std::uniform_int_distribution<> dis(0, m_player_amount - 1);
@@ -230,6 +256,7 @@ void Game::game_loop()
 
 	shuffle_cards();
 	distribute_cards();
+	print_state();
 	Player* player = designate_first_player();
 	std::cout << "\n" << "First player: " << player << "\n" << "\n";
 
