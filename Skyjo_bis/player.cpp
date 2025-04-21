@@ -69,6 +69,19 @@ void Player::replace_card(DiscardPile& discard_pile, size_t card_index)
 	m_deck.replace_card(discard_pile, card_index);
 }
 
+void Player::reveal_card(size_t deck_index)
+{
+	const size_t max_index = static_cast<size_t>(Constants::Deck::N_ROW * Constants::Deck::N_COL) - 1;
+	if (deck_index <= max_index)
+	{
+		m_deck.set_card_and_visibility_in_deck(deck_index, m_deck.get_card_in_deck(deck_index), true);
+	}
+	else
+	{
+		throw std::out_of_range("Deck index out of range.");
+	}
+}
+
 void Player::reveal_all_cards()
 {
 	for (auto& card_in_deck : m_deck)

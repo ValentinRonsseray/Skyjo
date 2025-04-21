@@ -1,11 +1,10 @@
 #include "draw_pile.h"
 #include <random>
+#include "utils.h"
 
 void DrawPile::shuffle_cards()
 {
-	std::random_device rd;
-	std::mt19937 g(rd());
-	std::shuffle(m_cards.begin(), m_cards.end(), g);
+	Utils::shuffle_vector(m_cards);
 }
 
 void DrawPile::distribute_cards(std::vector<Player>& players)

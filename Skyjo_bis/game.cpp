@@ -1,5 +1,6 @@
 #include "game.h"
-#include <random>
+#include "utils.h"
+
 
 std::vector<Card> Game::build_cards_vector()
 {
@@ -168,7 +169,7 @@ void Game::discard_draw_pile_top_card()
 	}
 }
 
-Player* Game::designate_first_player()  
+Player* Game::designate_first_player()
 {  
 	// Each player must reveal 2 cards
 	for (auto& player : m_players)
@@ -209,11 +210,6 @@ Player* Game::designate_first_player()
 	// Randomly select one of the players with the highest score
 	Player* selected_player = Utils::pick_random_element_in_vector(players_with_max_score);
 	return selected_player;
-	std::random_device rd;
-	std::mt19937 gen(rd());
-	std::uniform_int_distribution<> dis(0, m_player_amount - 1);
-	size_t random_index = static_cast<size_t>(dis(gen));
-	return &m_players[random_index];
 }
 
 bool Game::check_game_over() const
@@ -253,11 +249,12 @@ Player* Game::next_player(Player& player)
 
 void Game::game_loop()
 {
-
 	shuffle_cards();
 	distribute_cards();
 	print_state();
+
 	Player* player = designate_first_player();
+
 	std::cout << "\n" << "First player: " << player << "\n" << "\n";
 
 	bool a_player_has_revealed_all_cards = false;

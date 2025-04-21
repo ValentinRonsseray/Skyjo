@@ -58,6 +58,7 @@ public:
 	/**
 	 * @brief Reveals all cards in the deck.
 	 */
+	void reveal_card(size_t deck_index);
 	void reveal_all_cards();
 	void print_state() const;
 };
