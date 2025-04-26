@@ -2,7 +2,7 @@
 #include <memory>
 #include <iostream>
 #include "game.h"
-#define APPLICATION_DEBUG true
+//#define APPLICATION_DEBUG true
 
 class Application
 {

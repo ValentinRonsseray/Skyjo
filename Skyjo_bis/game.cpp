@@ -2,6 +2,17 @@
 #include "utils.h"
 
 
+std::vector<Player> Game::build_players_vector() const
+{
+	std::vector<Player> players;
+	players.reserve(m_player_amount);
+	for (unsigned int i = 0; i < m_player_amount; ++i)
+	{
+		players.emplace_back();
+	}
+	return players;
+}
+
 std::vector<Card> Game::build_cards_vector()
 {
 	std::vector<Card> cards;
@@ -174,7 +185,7 @@ Player* Game::designate_first_player()
 	// Each player must reveal 2 cards
 	for (auto& player : m_players)
 	{
-		std::cout << "Player " << &player << ", choose 2 cards to reveal:\n";
+		std::cout << "Player " << player.get_tag() << ", choose 2 cards to reveal:\n";
 		size_t first_choice_index = m_user_input_handler.choose_card_to_reveal();
 		size_t second_choice_index = first_choice_index;
 		while (second_choice_index == first_choice_index)
@@ -261,12 +272,12 @@ void Game::game_loop()
 	while (!check_game_over())
 	{
 		print_state();
-		std::cout << "\n" << "Current player: " << player << "\n";
+		std::cout << "\n" << "Current player: " << player->get_tag() << "\n";
 		play_turn(*player, a_player_has_revealed_all_cards);
 		if (player->has_every_cards_visible())
 		{
 			a_player_has_revealed_all_cards = true;
-			std::cout << "Player " << player << " has revealed all cards.\n";
+			std::cout << "Player " << player->get_tag() << " has revealed all cards.\n";
 		}
 		player = next_player(*player);
 	}
@@ -274,6 +285,6 @@ void Game::game_loop()
 	std::cout << "Game over! Final scores:\n";
 	for (const auto& player : m_players)
 	{
-		std::cout << "Player " << &player << ": " << player.get_score() << "\n";
+		std::cout << "Player " << player.get_tag() << ": " << player.get_score() << "\n";
 	}
 }

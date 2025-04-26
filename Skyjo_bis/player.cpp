@@ -92,7 +92,7 @@ void Player::reveal_all_cards()
 
 void Player::print_state() const
 {
-	std::cout << "Player " << this << " :\n";
+	std::cout << "Player " << get_tag() << " :\n";
 		
 	// Display deck cards in a 3 * 4 grid
 	int index = 0;

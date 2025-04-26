@@ -8,18 +8,20 @@
 #include "discard_pile.h"
 #include "constants.h"
 #include "user_input_handler.h"
-#define GAME_DEBUG true
+//#define GAME_DEBUG true
 
 class Application;
 
 class Game
 {
 public:
-	Game(Application& application, unsigned int player_amount) : m_application(application), m_player_amount(player_amount), m_players(player_amount, Player()), m_discard_pile(this, {})
+	Game(Application& application, unsigned int player_amount) : m_application(application), m_player_amount(player_amount), m_discard_pile(this, {})
 	{
 		#ifdef GAME_DEBUG
 			std::cout << "Game created at address: " << this << std::endl;
 		#endif // GAME_DEBUG
+
+		m_players = build_players_vector();
 
 		m_cards = build_cards_vector();
 
@@ -86,6 +88,7 @@ private:
 	unsigned int m_player_amount;
 
 	std::vector<Player> m_players;
+	std::vector<Player> build_players_vector() const;
 
 	std::vector<Card> m_cards;
 	std::vector<Card> build_cards_vector();
