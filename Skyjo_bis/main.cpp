@@ -11,9 +11,8 @@ int main()
 	try
 	{
 		Application app;
-		app.start_game(2);
-		Game& game = app.get_game();
-		game.game_loop();
+		unsigned int player_amount = app.setup_game();
+		app.start_game(player_amount);
 	}
 	catch (const std::exception& e)
 	{

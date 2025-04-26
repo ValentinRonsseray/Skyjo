@@ -25,5 +25,6 @@ public:
     Game& get_game() { return *m_game; }
 
     void start_game(unsigned int player_amount);
+    unsigned int setup_game();
     void print_application();
 };
