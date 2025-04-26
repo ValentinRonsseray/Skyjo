@@ -262,11 +262,12 @@ void Game::game_loop()
 {
 	shuffle_cards();
 	distribute_cards();
+	discard_draw_pile_top_card();
 	print_state();
 
 	Player* player = designate_first_player();
 
-	std::cout << "\n" << "First player: " << player << "\n" << "\n";
+	std::cout << "\n" << "First player: " << player->get_tag() << "\n" << "\n";
 
 	bool a_player_has_revealed_all_cards = false;
 	while (!check_game_over())
