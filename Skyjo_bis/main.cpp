@@ -1,7 +1,5 @@
 #include <iostream>
 #include "application.h"
-#include "constants.h"
-#include "user_input_handler.h"
 
 int main()
 {
