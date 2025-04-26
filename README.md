@@ -25,9 +25,9 @@ La manche se termine lorsqu'un joueur a **révélé toutes ses cartes**, et on a
 
 ## ✅ État d'avancement actuel
 
-- ✔️ Jeu disponible en interface console
-- ⏳ Stratégies de joueurs en cours de développement
-- ⏳ Intelligence artificielle à venir
+- [X] _Jeu disponible en interface console_
+- [ ] Stratégies de joueurs en cours de développement
+- [ ] Intelligence artificielle à venir
 
 ---
 
