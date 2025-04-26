@@ -50,6 +50,12 @@ La manche se termine lorsqu'un joueur a **révélé toutes ses cartes**, et on a
 
 ---
 
+## ✍️ Diagramme de classe
+
+![image](https://github.com/user-attachments/assets/83f0b190-7cda-4d98-be75-0d20c2e8bb09)
+
+---
+
 ## 📂 Organisation du projet
 
 ```
