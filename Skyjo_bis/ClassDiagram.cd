@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="Application" Collapsed="true">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAABAAAAAAAAAAAAAAAAACAQAEAAAABAAAAAA=</HashCode>
+      <FileName>application.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Card" Collapsed="true">
+    <Position X="11.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAgAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAACA=</HashCode>
+      <FileName>card.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Deck">
+    <Position X="10.25" Y="8.25" Width="3.5" />
+    <NestedTypes>
+      <Class Name="Deck::Iterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>deck.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+      <Class Name="Deck::ConstIterator" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>deck.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Class>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AQAgAAACAAACAABABRAAAAAQQAAAACAAAABACiAAAAA=</HashCode>
+      <FileName>deck.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_extra_card" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="DiscardPile" Collapsed="true">
+    <Position X="8.75" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAIAAAACEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>discard_pile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DrawPile" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABAAEAAAAAAAAAAAAAACAAAAQIAAAAAAAAAA=</HashCode>
+      <FileName>draw_pile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Game">
+    <Position X="4" Y="1.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAQGAAiEQAAAAAQEAEg0AAiAAAQAoIApAgSAADA=</HashCode>
+      <FileName>game.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_draw_pile" />
+      <Field Name="m_discard_pile" />
+      <Field Name="m_user_input_handler" />
+      <Field Name="m_application" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Pile" Collapsed="true">
+    <Position X="10" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAAAQEAAAAAAAAARAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>pile.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Player">
+    <Position X="6.5" Y="9" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>ARAAAAAGAAgAAAAABRAAAAgAAAAAACQAAAYACyAAAAA=</HashCode>
+      <FileName>player.h</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="m_deck" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UserInputHandler" Collapsed="true">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <NestedTypes>
+      <Enum Name="UserInputHandler::DrawCardSourceEnum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>user_input_handler.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+      <Enum Name="UserInputHandler::CardDecisionEnum" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>user_input_handler.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>IIAAgAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAAAAA=</HashCode>
+      <FileName>user_input_handler.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Struct Name="CardAndVisibility" Collapsed="true">
+    <Position X="14.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAIAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>deck.h</FileName>
+    </TypeIdentifier>
+  </Struct>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
