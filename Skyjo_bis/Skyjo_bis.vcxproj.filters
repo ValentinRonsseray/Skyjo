@@ -45,7 +45,7 @@
     <ClCompile Include="deck.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="user_input_handler.cpp">
+    <ClCompile Include="strategy.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
     <ClCompile Include="utils.cpp">
@@ -80,7 +80,7 @@
     <ClInclude Include="deck.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="user_input_handler.h">
+    <ClInclude Include="strategy.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="utils.h">
