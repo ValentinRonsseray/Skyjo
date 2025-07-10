@@ -10,8 +10,9 @@ int main()
 {
 	try
 	{
+		const unsigned int PLAYER_AMOUNT = 2;
 		Application app;
-		app.start_game(2);
+		app.start_game(PLAYER_AMOUNT);
 		Game& game = app.get_game();
 		game.game_loop();
 	}
