@@ -55,7 +55,7 @@ void Player::remove_column(int column_index)
 
 	for (size_t j = 0; j < Constants::Deck::N_ROW; j++)
 	{
-		m_deck.set_card_and_visibility_in_deck(column_index + j * Constants::Deck::N_COL, nullptr, false);
+		m_deck.set_card_and_visibility_in_deck(column_index + j * Constants::Deck::N_COL, nullptr, true);
 	}
 }
 
