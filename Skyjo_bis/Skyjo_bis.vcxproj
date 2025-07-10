@@ -135,6 +135,7 @@
     <ClCompile Include="discard_pile.cpp" />
     <ClCompile Include="draw_pile.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="human_strategy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pile.cpp" />
     <ClCompile Include="player.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="discard_pile.h" />
     <ClInclude Include="draw_pile.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="human_strategy.h" />
     <ClInclude Include="pile.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="strategy.h" />

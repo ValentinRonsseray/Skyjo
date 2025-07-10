@@ -25,16 +25,16 @@ public:
 	 * @brief Gets the index of the card to replace.
 	 * @return The index of the card to replace. (0 <= index <= 11)
 	 */
-	size_t choose_card_to_replace() const;
+	virtual size_t choose_card_to_replace() const = 0;
 
 	/**
 	 * @brief Gets the index of the card to reveal.
 	 * @return The index of the card to reveal. (0 <= index <= 11)
 	 */
-	size_t choose_card_to_reveal() const;
-	
-	DrawCardSourceEnum choose_where_to_draw() const;
+	virtual size_t choose_card_to_reveal() const = 0;
 
-	CardDecisionEnum choose_discard_or_replace() const;
+	virtual DrawCardSourceEnum choose_where_to_draw() const = 0;
+
+	virtual CardDecisionEnum choose_discard_or_replace() const = 0;
 };
 
