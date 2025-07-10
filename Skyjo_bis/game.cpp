@@ -54,16 +54,16 @@ void Game::reveal_card(Player& player, size_t deck_index)
 void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 {
 	// Draw card from the draw pile or discard pile
-	UserInputHandler::DrawCardSourceEnum source = m_user_input_handler.choose_where_to_draw();
-	if (source == UserInputHandler::DrawCardSourceEnum::DRAW_PILE)
+	Strategy::DrawCardSourceEnum source = m_user_input_handler.choose_where_to_draw();
+	if (source == Strategy::DrawCardSourceEnum::DRAW_PILE)
 	{
 		pick_card_from_draw_pile(player);
 		player.get_extra_card()->get_points();
 		std::cout << "You picked the card: " << player.get_extra_card()->get_points() << "\n";
 
 		// Choose to discard or replace
-		UserInputHandler::CardDecisionEnum decision = m_user_input_handler.choose_discard_or_replace();
-		if (decision == UserInputHandler::CardDecisionEnum::REPLACE)
+		Strategy::CardDecisionEnum decision = m_user_input_handler.choose_discard_or_replace();
+		if (decision == Strategy::CardDecisionEnum::REPLACE)
 		{
 			size_t card_index = m_user_input_handler.choose_card_to_replace();
 			player.replace_card(m_discard_pile, card_index);
@@ -75,7 +75,7 @@ void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 			}
 			
 		}
-		else if (decision == UserInputHandler::CardDecisionEnum::DISCARD)
+		else if (decision == Strategy::CardDecisionEnum::DISCARD)
 		{
 			discard_card(player, m_discard_pile);
 
@@ -97,7 +97,7 @@ void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 			}
 		}
 	}
-	else // source == UserInputHandler::DrawCardSourceEnum::DISCARD_PILE
+	else // source == Strategy::DrawCardSourceEnum::DISCARD_PILE
 	{
 		pick_card_from_discard_pile(player);
 		player.get_extra_card()->get_points();

@@ -3,7 +3,7 @@
 #include <string>
 #include "deck.h"
 
-class UserInputHandler
+class Strategy
 {
 public:
 
@@ -19,7 +19,7 @@ public:
 		DISCARD,
 	};
 
-	UserInputHandler() = default;
+	Strategy() = default;
 
 	/**
 	 * @brief Gets the index of the card to replace.

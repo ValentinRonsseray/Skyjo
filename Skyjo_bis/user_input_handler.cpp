@@ -1,6 +1,6 @@
 #include "user_input_handler.h"
 
-size_t UserInputHandler::choose_card_to_replace() const
+size_t Strategy::choose_card_to_replace() const
 {
 	// Get the Array Position of the card to replace (tuple<size_t, size_t>)
 	size_t row, column;
@@ -25,7 +25,7 @@ size_t UserInputHandler::choose_card_to_replace() const
 	return row * 4 + column;
 }
 
-size_t UserInputHandler::choose_card_to_reveal() const
+size_t Strategy::choose_card_to_reveal() const
 {
 	// Get the Array Position of the card to reveal (tuple<size_t, size_t>)
 	size_t row, column;
@@ -50,7 +50,7 @@ size_t UserInputHandler::choose_card_to_reveal() const
 	return row * 4 + column;
 }
 
-UserInputHandler::DrawCardSourceEnum UserInputHandler::choose_where_to_draw() const
+Strategy::DrawCardSourceEnum Strategy::choose_where_to_draw() const
 {
 	std::string decision;
 	std::cout << "Do you want to draw from the draw pile or discard pile? (d/draw / t/discard): ";
@@ -70,7 +70,7 @@ UserInputHandler::DrawCardSourceEnum UserInputHandler::choose_where_to_draw() co
 	}
 }
 
-UserInputHandler::CardDecisionEnum UserInputHandler::choose_discard_or_replace() const
+Strategy::CardDecisionEnum Strategy::choose_discard_or_replace() const
 {
 	std::string decision;
 	std::cout << "Do you want to replace or discard the card? (r/replace / d/discard): ";
