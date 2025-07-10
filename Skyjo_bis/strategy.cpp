@@ -1,4 +1,4 @@
-#include "user_input_handler.h"
+#include "strategy.h"
 
 size_t Strategy::choose_card_to_replace() const
 {
