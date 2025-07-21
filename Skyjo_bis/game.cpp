@@ -54,7 +54,7 @@ void Game::reveal_card(Player& player, size_t deck_index)
 void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 {
 	// Draw card from the draw pile or discard pile
-	Strategy::DrawCardSourceEnum source = m_user_input_handler.choose_where_to_draw();
+	Strategy::DrawCardSourceEnum source = player.choose_where_to_draw();
 	if (source == Strategy::DrawCardSourceEnum::DRAW_PILE)
 	{
 		pick_card_from_draw_pile(player);
@@ -62,10 +62,10 @@ void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 		std::cout << "You picked the card: " << player.get_extra_card()->get_points() << "\n";
 
 		// Choose to discard or replace
-		Strategy::CardDecisionEnum decision = m_user_input_handler.choose_discard_or_replace();
+		Strategy::CardDecisionEnum decision = player.choose_discard_or_replace();
 		if (decision == Strategy::CardDecisionEnum::REPLACE)
 		{
-			size_t card_index = m_user_input_handler.choose_card_to_replace();
+			size_t card_index = player.choose_card_to_replace();
 			player.replace_card(m_discard_pile, card_index);
 			int removable_column = check_for_removable_column(player);
 			if (removable_column != -1)
@@ -84,7 +84,7 @@ void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 			bool chosen_card_already_releaved = true;
 			while (chosen_card_already_releaved)
 			{
-				size_t deck_index = m_user_input_handler.choose_card_to_reveal();
+				size_t deck_index = player.choose_card_to_reveal();
 				if (player.get_card_visibility(deck_index))
 				{
 					std::cout << "This card is already revealed. Please choose another one.\n";
@@ -104,7 +104,7 @@ void Game::play_turn(Player& player, bool a_player_has_revealed_all_cards)
 		std::cout << "You picked the card: " << player.get_extra_card()->get_points() << "\n";
 
 		// Replace one of the cards in the deck
-		size_t card_index = m_user_input_handler.choose_card_to_replace();
+		size_t card_index = player.choose_card_to_replace();
 		player.replace_card(m_discard_pile, card_index);
 		int removable_column = check_for_removable_column(player);
 		if (removable_column != -1)
@@ -175,11 +175,11 @@ Player* Game::designate_first_player()
 	for (auto& player : m_players)
 	{
 		std::cout << "Player " << &player << ", choose 2 cards to reveal:\n";
-		size_t first_choice_index = m_user_input_handler.choose_card_to_reveal();
+		size_t first_choice_index = player.choose_card_to_reveal();
 		size_t second_choice_index = first_choice_index;
 		while (second_choice_index == first_choice_index)
 		{
-			second_choice_index = m_user_input_handler.choose_card_to_reveal();
+			second_choice_index = player.choose_card_to_reveal();
 			if (second_choice_index == first_choice_index)
 			{
 				std::cout << "You have already revealed this card. Please choose another one.\n";

@@ -10,7 +10,7 @@ void DrawPile::shuffle_cards()
 void DrawPile::distribute_cards(std::vector<Player>& players)
 {
     const size_t PLAYER_COUNT = players.size();
-    const size_t CARDS_PER_PLAYER = Constants::Deck::N_ROW * Constants::Deck::N_COL;
+	const size_t CARDS_PER_PLAYER = static_cast<size_t>(Constants::Deck::N_ROW) * Constants::Deck::N_COL;
     const size_t TOTAL_NEEDED = PLAYER_COUNT * CARDS_PER_PLAYER;
 
 	// Check if there are enough cards in the deck

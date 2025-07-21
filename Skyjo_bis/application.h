@@ -24,6 +24,6 @@ public:
 
     Game& get_game() { return *m_game; }
 
-    void start_game(unsigned int player_amount);
+    void start_game(const std::vector<Strategy::StrategyType>& strategies);
     void print_application();
 };

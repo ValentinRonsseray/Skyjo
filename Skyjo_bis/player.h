@@ -1,12 +1,17 @@
 #pragma once
 #include "deck.h"
+#include "strategy.h"
 
 class Player
 {
 private:
 	Deck m_deck;
+	std::unique_ptr<Strategy> m_strategy;
 public:
-	Player() = default;
+	Player(Strategy::StrategyType strategy_type)
+	{
+		m_strategy = Strategy::create_strategy(strategy_type);
+	}
 
 	inline Deck& get_deck() { return m_deck; }
 	int get_score() const;
@@ -23,6 +28,7 @@ public:
 	{
 		return m_deck.get_extra_card();
 	}
+	std::vector<int> get_non_removed_columns() const;
 
 	inline void set_card_and_visibility_in_deck(size_t index, Card* card, bool is_visible)
 	{
@@ -60,5 +66,14 @@ public:
 	 */
 	void reveal_card(size_t deck_index);
 	void reveal_all_cards();
+
+	size_t choose_card_to_replace() const;
+	size_t choose_card_to_reveal() const;
+	Strategy::DrawCardSourceEnum choose_where_to_draw() const;
+	Strategy::CardDecisionEnum choose_discard_or_replace() const;
+
+	/**
+	 * @brief Prints the state of the player, including the deck and score.
+	 */
 	void print_state() const;
 };

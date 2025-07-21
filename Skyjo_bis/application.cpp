@@ -1,10 +1,16 @@
 // Define the inline function after the Game class is fully declared
 #include "application.h"
 #include "game.h"
+#include "strategy.h"
 
-void Application::start_game(unsigned int player_amount)
+void Application::start_game(const std::vector<Strategy::StrategyType>& strategies)
 {
-    m_game = std::make_unique<Game>(*this, player_amount);
+	if (m_game)
+	{
+		std::cout << "Game already started." << std::endl;
+		return;
+	}
+	m_game = std::make_unique<Game>(*this, strategies);
 }
 
 void Application::print_application()

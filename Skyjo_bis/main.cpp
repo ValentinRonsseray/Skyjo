@@ -4,15 +4,18 @@
 #include <iostream>
 #include "application.h"
 #include "constants.h"
-#include "user_input_handler.h"
+#include "strategy.h"
 
 int main()
 {
 	try
 	{
-		const unsigned int PLAYER_AMOUNT = 2;
+		const std::vector<Strategy::StrategyType> strategies = {
+			Strategy::StrategyType::HUMAN_STRATEGY, // Player 1
+			Strategy::StrategyType::HUMAN_STRATEGY, // Player 2
+		};
 		Application app;
-		app.start_game(PLAYER_AMOUNT);
+		app.start_game(strategies);
 		Game& game = app.get_game();
 		game.game_loop();
 	}

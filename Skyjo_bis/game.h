@@ -7,7 +7,6 @@
 #include "draw_pile.h"
 #include "discard_pile.h"
 #include "constants.h"
-#include "user_input_handler.h"
 #define GAME_DEBUG true
 
 class Application;
@@ -15,11 +14,26 @@ class Application;
 class Game
 {
 public:
-	Game(Application& application, unsigned int player_amount) : m_application(application), m_player_amount(player_amount), m_players(player_amount, Player()), m_discard_pile(this, {})
+	Game(Application& application, const std::vector<Strategy::StrategyType>& strategies)
+		: m_application(application), m_discard_pile(this, {})
 	{
-		#ifdef GAME_DEBUG
-			std::cout << "Game created at address: " << this << std::endl;
-		#endif // GAME_DEBUG
+#ifdef GAME_DEBUG
+		std::cout << "Game created at address: " << this << std::endl;
+#endif // GAME_DEBUG
+
+		if (strategies.size() < Constants::Game::MIN_PLAYER_AMOUNT || strategies.size() > Constants::Game::MAX_PLAYER_AMOUNT)
+		{
+			throw std::invalid_argument("Invalid number of players. Must be between " +
+				std::to_string(Constants::Game::MIN_PLAYER_AMOUNT) + " and " +
+				std::to_string(Constants::Game::MAX_PLAYER_AMOUNT) + ".");
+		}
+
+		// Creating players based on the provided strategies
+		m_players.reserve(strategies.size());
+		for (const auto& strategyType : strategies)
+		{
+			m_players.emplace_back(strategyType);
+		}
 
 		m_cards = build_cards_vector();
 
@@ -31,22 +45,22 @@ public:
 		}
 
 		m_draw_pile = DrawPile(this, cards_ptrs);
-	};
+	}
+
 	~Game()
 	{
 		#ifdef GAME_DEBUG
 				std::cout << "Game destroyed at address: " << this << std::endl;
 		#endif // GAME_DEBUG
-	};
+	}
 
 	void print_game() const
 	{
-		std::cout << "Game with " << m_player_amount << " players." << std::endl;
+		std::cout << "Game with " << m_players.size() << " players." << std::endl;
 	}
 	void print_state() const;
 
 	inline std::vector<Player>& get_players() { return m_players; }
-	inline Strategy& get_user_input_handler() { return m_user_input_handler; }
 	inline int get_score(Player& player) const { return player.get_score(); }
 
 	void shuffle_cards();
@@ -83,7 +97,6 @@ public:
 
 private:
 	Application& m_application;
-	unsigned int m_player_amount;
 
 	std::vector<Player> m_players;
 
@@ -92,7 +105,5 @@ private:
 
 	DrawPile m_draw_pile;
 	DiscardPile m_discard_pile;
-
-	Strategy m_user_input_handler;
 };
 

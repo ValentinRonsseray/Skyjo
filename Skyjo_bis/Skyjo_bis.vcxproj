@@ -139,6 +139,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pile.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="random_strategy.cpp" />
     <ClCompile Include="strategy.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
@@ -153,6 +154,7 @@
     <ClInclude Include="human_strategy.h" />
     <ClInclude Include="pile.h" />
     <ClInclude Include="player.h" />
+    <ClInclude Include="random_strategy.h" />
     <ClInclude Include="strategy.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>

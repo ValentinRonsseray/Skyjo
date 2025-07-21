@@ -13,6 +13,52 @@ int Deck::get_score() const
 	return score;
 }
 
+std::vector<int> Deck::get_non_removed_columns() const
+{
+	std::vector<int> non_removed_columns = {};
+	for (size_t j = 0; j < Constants::Deck::N_COL; j++)
+	{
+		bool column_removed = true;
+		Card* card = get_card_in_deck(j * Constants::Deck::N_COL);
+		bool card_is_visible = get_card_visibility(j * Constants::Deck::N_COL);
+		if (card == nullptr && card_is_visible)
+		{
+			non_removed_columns.push_back(static_cast<int>(j));
+		}
+	}
+	return non_removed_columns;
+}
+
+std::vector<size_t> Deck::get_replacable_card_indices() const
+{
+	std::vector<size_t> replacable_indices;
+	for (size_t i = 0; i < m_deck_cards.size(); ++i)
+	{
+		if (m_deck_cards[i].card != nullptr)
+		{
+			if (m_deck_cards[i].is_visible)
+			{
+				replacable_indices.push_back(i);
+			}
+		}
+	}
+	return replacable_indices;
+}
+
+std::vector<size_t> Deck::get_hidden_card_indices() const
+{
+	std::vector<size_t> hidden_indices;
+	for (size_t i = 0; i < m_deck_cards.size(); ++i)
+	{
+		if (m_deck_cards[i].card != nullptr && !m_deck_cards[i].is_visible)
+		{
+			hidden_indices.push_back(i);
+		}
+	}
+	return hidden_indices;
+}
+
+
 bool Deck::has_every_cards_visible() const
 {
 	for (const auto& card : m_deck_cards) {

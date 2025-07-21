@@ -31,4 +31,10 @@ namespace Constants {
 	   constexpr unsigned int N_ROW = 3;
 	   constexpr unsigned int N_COL = 4;
    }
+
+   namespace Game
+   {
+       constexpr unsigned int MIN_PLAYER_AMOUNT = 2;
+       constexpr unsigned int MAX_PLAYER_AMOUNT = 8;
+   }
 }
