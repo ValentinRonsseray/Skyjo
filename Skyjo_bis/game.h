@@ -99,7 +99,6 @@ private:
 	Application& m_application;
 
 	std::vector<Player> m_players;
-	std::vector<Player> build_players_vector() const;
 
 	std::vector<Card> m_cards;
 	std::vector<Card> build_cards_vector();

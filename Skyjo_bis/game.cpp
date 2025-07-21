@@ -1,18 +1,6 @@
 #include "game.h"
 #include "utils.h"
 
-
-std::vector<Player> Game::build_players_vector() const
-{
-	std::vector<Player> players;
-	players.reserve(m_player_amount);
-	for (unsigned int i = 0; i < m_player_amount; ++i)
-	{
-		players.emplace_back();
-	}
-	return players;
-}
-
 std::vector<Card> Game::build_cards_vector()
 {
 	std::vector<Card> cards;
