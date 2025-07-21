@@ -1,13 +1,20 @@
 #include <iostream>
 #include "application.h"
+#include "constants.h"
+#include "strategy.h"
 
 int main()
 {
 	try
 	{
+		const std::vector<Strategy::StrategyType> strategies = {
+			Strategy::StrategyType::HUMAN_STRATEGY, // Player 1
+			Strategy::StrategyType::HUMAN_STRATEGY, // Player 2
+		};
 		Application app;
-		const unsigned int player_amount = app.setup_game();
-		app.start_game(player_amount);
+		app.start_game(2);
+		Game& game = app.get_game();
+		game.game_loop();
 	}
 	catch (const std::exception& e)
 	{

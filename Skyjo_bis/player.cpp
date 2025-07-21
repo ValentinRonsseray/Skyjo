@@ -7,6 +7,11 @@ int Player::get_score() const
 	return m_deck.get_score();
 }
 
+std::vector<int> Player::get_non_removed_columns() const
+{
+	return m_deck.get_non_removed_columns();
+}
+
 bool Player::has_every_cards_visible() const
 {
 	return m_deck.has_every_cards_visible();
@@ -55,7 +60,7 @@ void Player::remove_column(int column_index)
 
 	for (size_t j = 0; j < Constants::Deck::N_ROW; j++)
 	{
-		m_deck.set_card_and_visibility_in_deck(column_index + j * Constants::Deck::N_COL, nullptr, false);
+		m_deck.set_card_and_visibility_in_deck(column_index + j * Constants::Deck::N_COL, nullptr, true);
 	}
 }
 
@@ -88,6 +93,26 @@ void Player::reveal_all_cards()
 	{
 		card_in_deck.is_visible = true;
 	}
+}
+
+size_t Player::choose_card_to_replace() const
+{
+	return m_strategy->choose_card_to_replace(m_deck);
+}
+
+size_t Player::choose_card_to_reveal() const
+{
+	return m_strategy->choose_card_to_reveal(m_deck);
+}
+
+Strategy::DrawCardSourceEnum Player::choose_where_to_draw() const
+{
+	return m_strategy->choose_where_to_draw();
+}
+
+Strategy::CardDecisionEnum Player::choose_discard_or_replace() const
+{
+	return m_strategy->choose_discard_or_replace();
 }
 
 void Player::print_state() const

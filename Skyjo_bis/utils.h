@@ -31,4 +31,19 @@ namespace Utils
         size_type index = dis(gen);
         return elements[index];
     }
+
+	/**
+	 * @brief Returns a random integer between min and max (inclusive).
+	 * @param min The minimum value (inclusive).
+	 * @param max The maximum value (inclusive).
+	 * @return A random integer between min and max.
+	 */
+	int random_integer(int min, int max);
+	/**
+	 * @brief Returns a random integer between 0 and max (inclusive).
+	 * @param max The maximum value (inclusive).
+	 * @return A random integer between 0 and max.
+	 */
+	int random_integer(int max);
+
 }

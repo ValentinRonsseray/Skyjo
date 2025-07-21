@@ -23,6 +23,9 @@ public:
 	inline bool get_card_visibility(size_t index) const { return m_deck_cards[index].is_visible; }
 	Card* get_extra_card() const { return m_extra_card; }
 	inline size_t get_size() const { return m_deck_cards.size(); }
+	std::vector<int> get_non_removed_columns() const;
+	std::vector<size_t> get_replacable_card_indices() const;
+	std::vector<size_t> get_hidden_card_indices() const;
 
 	void set_card_and_visibility_in_deck(size_t index, Card* card, bool is_visible) {
 		if (index < get_size()) {

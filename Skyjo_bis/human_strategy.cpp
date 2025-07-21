@@ -1,6 +1,6 @@
-#include "user_input_handler.h"
+#include "human_strategy.h"
 
-size_t UserInputHandler::choose_card_to_replace() const
+size_t HumanStrategy::choose_card_to_replace(Deck player_deck) const
 {
 	// Get the Array Position of the card to replace (tuple<size_t, size_t>)
 	size_t row, column;
@@ -16,7 +16,7 @@ size_t UserInputHandler::choose_card_to_replace() const
 		std::cin.clear(); // Clear the error flag
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
 		std::cout << "Invalid input. Please enter a valid row (1-3) and column (1-4)." << std::endl;
-		return choose_card_to_reveal(); // Retry
+		return choose_card_to_reveal(player_deck); // Retry
 	}
 
 	// Conversion to 0-based index
@@ -25,7 +25,7 @@ size_t UserInputHandler::choose_card_to_replace() const
 	return row * 4 + column;
 }
 
-size_t UserInputHandler::choose_card_to_reveal() const
+size_t HumanStrategy::choose_card_to_reveal(Deck player_deck) const
 {
 	// Get the Array Position of the card to reveal (tuple<size_t, size_t>)
 	size_t row, column;
@@ -41,7 +41,7 @@ size_t UserInputHandler::choose_card_to_reveal() const
 		std::cin.clear(); // Clear the error flag
 		std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
 		std::cout << "Invalid input. Please enter a valid row (1-3) and column (1-4)." << std::endl;
-		return choose_card_to_reveal(); // Retry
+		return choose_card_to_reveal(player_deck); // Retry
 	}
 
 	// Conversion to 0-based index
@@ -50,7 +50,7 @@ size_t UserInputHandler::choose_card_to_reveal() const
 	return row * 4 + column;
 }
 
-UserInputHandler::DrawCardSourceEnum UserInputHandler::choose_where_to_draw() const
+Strategy::DrawCardSourceEnum HumanStrategy::choose_where_to_draw() const
 {
 	std::string decision;
 	std::cout << "Do you want to draw from the draw pile or discard pile? (d/draw / t/discard): ";
@@ -70,7 +70,7 @@ UserInputHandler::DrawCardSourceEnum UserInputHandler::choose_where_to_draw() co
 	}
 }
 
-UserInputHandler::CardDecisionEnum UserInputHandler::choose_discard_or_replace() const
+Strategy::CardDecisionEnum HumanStrategy::choose_discard_or_replace() const
 {
 	std::string decision;
 	std::cout << "Do you want to replace or discard the card? (r/replace / d/discard): ";

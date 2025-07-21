@@ -136,10 +136,12 @@
     <ClCompile Include="discard_pile.cpp" />
     <ClCompile Include="draw_pile.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="human_strategy.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="pile.cpp" />
     <ClCompile Include="player.cpp" />
-    <ClCompile Include="user_input_handler.cpp" />
+    <ClCompile Include="random_strategy.cpp" />
+    <ClCompile Include="strategy.cpp" />
     <ClCompile Include="utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -150,9 +152,11 @@
     <ClInclude Include="discard_pile.h" />
     <ClInclude Include="draw_pile.h" />
     <ClInclude Include="game.h" />
+    <ClInclude Include="human_strategy.h" />
     <ClInclude Include="pile.h" />
     <ClInclude Include="player.h" />
-    <ClInclude Include="user_input_handler.h" />
+    <ClInclude Include="random_strategy.h" />
+    <ClInclude Include="strategy.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <ItemGroup>
